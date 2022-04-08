@@ -1,21 +1,26 @@
 import sys
-sys.setrecursionlimit(10**6)
+n = int(sys.stdin.readline())
+cards = list(map(int, sys.stdin.readline().split()))
+cards.sort()
+m = int(sys.stdin.readline())
+target = list(map(int, sys.stdin.readline().split()))
 
-def append_star(n) :
-    if n == 1 :
-        return ['*']
+for tg in target :
+    left = 0
+    right = n - 1
+    flag = 0
     
-    L = []
-    stars = append_star(n//3)
-
-    for star in stars :
-        L.append(star * 3)
-    for star in stars :
-        L.append(star + ' ' * (n//3) + star)
-    for star in stars :
-        L.append(star * 3)
+    while left <= right :
+        mid = (left + right) // 2
         
-    return L
-
-n = int(sys.stdin.readline().strip())
-print("\n".join(append_star(n)))
+        if tg == cards[mid] :
+            print(1, end=" ")
+            flag = 1
+            break
+        elif tg > cards[mid] :
+            left = mid + 1
+        else :
+            right = mid - 1
+            
+    if not flag :
+        print(0, end=" ")
