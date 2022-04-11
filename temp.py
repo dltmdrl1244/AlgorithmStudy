@@ -1,29 +1,11 @@
 import sys
-n, m = map(int, sys.stdin.readline().split())
-lista = list(map(int, sys.stdin.readline().split()))
-listb = list(map(int, sys.stdin.readline().split()))
-listc = []
-indexa = 0
-indexb = 0
+n = int(sys.stdin.readline())
+dp = [0 for _ in range(1001)]
 
-while indexa != len(lista) and indexb != len(listb) :
-    if lista[indexa] > listb[indexb] :
-        listc.append(listb[indexb])
-        indexb += 1
-    else :
-        listc.append(lista[indexa])
-        indexa += 1
+dp[1] = 1
+dp[2] = 2
 
-while indexa != len(lista) :
-    listc.append(lista[indexa])
-    indexa += 1
+for i in range(3, n+1) :
+    dp[i] = dp[i-1] + dp[i-2]
 
-while indexb != len(listb) :
-    listc.append(listb[indexb])
-    indexb += 1
-
-for c in listc :
-    print(c, end=" ")
-    
-# merge sort에서 merge 하는 부분의 코드
-# 간단함
+print(dp[n] % 10007)
