@@ -1,11 +1,16 @@
 import sys
+import operator as op
+from functools import reduce
 n = int(sys.stdin.readline())
-dp = [0 for _ in range(1001)]
 
-dp[1] = 1
-dp[2] = 2
+def nCr(n, r):
+    if n < 1 or r < 0 or n < r:
+        raise ValueError
+    r = min(r, n-r)
+    numerator = reduce(op.mul, range(n, n-r, -1), 1)
+    denominator = reduce(op.mul, range(1, r+1), 1)
+    return numerator // denominator
 
-for i in range(3, n+1) :
-    dp[i] = dp[i-1] + dp[i-2]
-
-print(dp[n] % 10007)
+for _ in range(n) :
+    n, m = map(int, sys.stdin.readline().split())
+    print(nCr(m, n))
