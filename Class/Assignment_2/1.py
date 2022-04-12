@@ -42,6 +42,8 @@ def solve(start, end) :
     # 항상 answer보다 멀리 떨어져 있게 되므로, 더 이상 수행되지 않고 break를 만나게 된다
     for i in range(can_len) :
         for j in range(i+1, can_len) :
+            if j - i > 12 :
+                break
             if (candidate[i][1] - candidate[j][1]) ** 2 < answer :
                 answer = min(answer, dist(candidate[i], candidate[j]))
             else :

@@ -1,16 +1,17 @@
 import sys
-import operator as op
-from functools import reduce
 n = int(sys.stdin.readline())
+lista = list(map(int, sys.stdin.readline().split()))
+listb = list(map(int, sys.stdin.readline().split()))
+listc = []
+sum = 0
 
-def nCr(n, r):
-    if n < 1 or r < 0 or n < r:
-        raise ValueError
-    r = min(r, n-r)
-    numerator = reduce(op.mul, range(n, n-r, -1), 1)
-    denominator = reduce(op.mul, range(1, r+1), 1)
-    return numerator // denominator
+lista.sort(key = lambda x : x)
+listb.sort(key = lambda x : -x)
 
-for _ in range(n) :
-    n, m = map(int, sys.stdin.readline().split())
-    print(nCr(m, n))
+print(lista)
+print(listb)
+
+for i in range(n) :
+    sum += lista[i] * listb[i]
+    
+print(sum)
