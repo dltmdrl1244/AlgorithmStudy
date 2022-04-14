@@ -1,17 +1,11 @@
 import sys
 n = int(sys.stdin.readline())
-lista = list(map(int, sys.stdin.readline().split()))
-listb = list(map(int, sys.stdin.readline().split()))
-listc = []
-sum = 0
+ropes = [int(sys.stdin.readline()) for _ in range(n)]
+ans = []
 
-lista.sort(key = lambda x : x)
-listb.sort(key = lambda x : -x)
-
-print(lista)
-print(listb)
+ropes.sort()
 
 for i in range(n) :
-    sum += lista[i] * listb[i]
-    
-print(sum)
+    ans.append(ropes[i] * (n-i))
+
+print(max(ans))
