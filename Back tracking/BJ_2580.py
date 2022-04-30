@@ -31,12 +31,14 @@ def checkSq(x, y, n) :
     return True
 
 def check(y, x, i) :
+    # 행, 열, 블록 탐색 모아놓음
     if checkRow(y, i) and checkCol(x, i) and checkSq(x, y, i) :
         return True
     else :
         return False
 
 def dfs(x) :
+    # x index가 blank 개수만큼 있으면 완료했으니 출력하고 종료
     if x == len(blank) :
         for r in range(9) :
             for c in range(9) :
@@ -44,6 +46,7 @@ def dfs(x) :
             print()
         exit(0)
     
+    # [r][c]에 들어갈 수 있는지 확인한 후 들어갈 수 있으면 넣고 재귀, 그 후 초기화
     for i in range(1, 10) :
         r = blank[x][0]
         c = blank[x][1]
