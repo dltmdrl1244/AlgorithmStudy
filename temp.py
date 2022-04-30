@@ -1,20 +1,30 @@
 import sys
-n, m = map(int, sys.stdin.readline().split())
+input = sys.stdin.readline
+n = int(input())
 
-s = []
+stack = []
+cnt = 0
+row = [0] * n
 
-def f() :
-    if len(s) == m :
-        print(" ".join(map(str, s)))
-        return
+def is_possible(x, y) :
+    for i in range(x) :
+        if row[i] == y or abs(row[i] - y) == abs(i - x) :
+            return False
+    return True
+
+for i in range(n-1, -1, -1) :
+    stack.append([0, i])
+
+while len(stack) != 0 :
+    popx, popy = stack.pop()
+    if popx == n - 1 :
+        cnt += 1
+        continue
+        
+    row[popx] = popy
     
-    for i in range(1, n+1) :
-        s.append(i)
-        f()
-        s.pop()
-            
-f()
+    for i in range(n-1, -1, -1) :
+        if is_possible(popx+1, i) :
+            stack.append([popx+1, i])
 
-# 백트래킹하는 알고리즘은 앞서 푼 N과 M(1) 문제(15649)와 동일하지만 오름차순이라는 제약사항이 추가된다.
-# 즉 앞서 나온 숫자보다 작은 수가 나올 수 없으므로 이를 필터링하는 조건을 걸어준다.
-# 새로 넣을 i가 s의 마지막 숫자보다 큰지 확인하고, s가 비어있을 때는 비교가 되지 않으므로 len(s) == 0 와 함께 or로 묶어준다.
+print(cnt)
