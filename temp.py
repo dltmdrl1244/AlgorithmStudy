@@ -1,36 +1,14 @@
 import sys
+input = sys.stdin.readline
 
-s = sys.stdin.readline().rstrip()
-stack = []
-tmp = 1
-res = 0
+n = int(input())
+tower = list(map(int, input().split()))
+res = [0] * n
 
-for i in range(len(s)):
-  if s[i] == '(':
-    tmp *= 2
-    stack.append(s[i])
-  elif s[i] == '[':
-    tmp *= 3
-    stack.append(s[i])
+for i in range(len(tower)) :
+    for j in range(i, -1, -1) :
+        if tower[i] < tower[j] :
+            res[i] = j + 1
+            break
 
-  elif s[i] == ')':
-    if not stack or stack[-1] == '[':
-      res = 0
-      break
-    if s[i-1] == '(':
-      res += tmp
-    tmp //= 2
-    stack.pop()
-  
-  else:
-    if not stack or stack[-1] == '(':
-      res = 0
-      break
-    if s[i-1] == '[':
-      res += tmp
-    tmp //= 3
-    stack.pop()
-
-if stack:
-  res = 0
-print(res)
+print(" ".join(map(str, res)))
