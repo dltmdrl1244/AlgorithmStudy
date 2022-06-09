@@ -23,8 +23,8 @@ def dijkstra(start) :
             continue
         
         for n in graph[node] :
-            new_cost = n[1] + dist[node]
-            if new_cost < dist[n[0]] :
+            new_cost = n[1] + dist[node] # v2로 가는 노드의 거리 + 내가 방금 빼낸 관심노드까지의 최단거리
+            if new_cost < dist[n[0]] : # v2까지의 거리보다 짧으면
                 dist[n[0]] = new_cost
                 heapq.heappush(q, (new_cost, n[0]))
     
