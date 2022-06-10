@@ -1,26 +1,16 @@
 import sys
-n, k = map(int, sys.stdin.readline().split())
-coins = []
-dp = [-1 for _ in range(100001)]
+input = sys.stdin.readline
 
-for i in range(n) :
-    coins.append(int(sys.stdin.readline()))
-    
-for coin in coins :
-    dp[coin] = 1
-    
-for i in range(1, k+1) :
-    if dp[i] == 1 :
-        continue
-    arr = []
-    flag = 0
-    
-    for coin in coins :
-        if coin != 0 and i > coin :
-            if dp[i-coin] != -1 :
-                flag = 1
-                arr.append(dp[i-coin])
-    if flag :
-        dp[i] = min(arr) + 1
-    
-print(dp[k])
+n = int(input())
+graph = [list(map(int, input().split())) for _ in range(n)]
+
+for k in range(n) :
+    for i in range(n) :
+        for j in range(n) :
+            if graph[i][k] and graph[k][j] :
+                graph[i][j] = 1
+
+for line in graph :
+    for l in line :
+        print(l, end=" ")
+    print()
