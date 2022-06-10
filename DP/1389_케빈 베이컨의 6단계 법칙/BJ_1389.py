@@ -19,10 +19,7 @@ for k in range(n) :
             if i == j :
                 continue
             if graph[i][k] and graph[k][j] :
-                if graph[i][j] :
-                    graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
-                else :
-                    graph[i][j] = graph[i][k] + graph[k][j]
+                graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
     
 idx = 0
 mval = inf
@@ -33,3 +30,4 @@ for i in range(n-1, -1, -1) :
         idx = i
             
 print(idx+1)
+
