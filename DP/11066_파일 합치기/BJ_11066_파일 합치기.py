@@ -16,7 +16,7 @@ def solve() :
     # 즉 우리가 구해야 하는 것은 dp[1][n]
     
     for n in range(2, k+1) : # 길이. 최대 k까지 돌아야 하므로 range는 2, k+1
-        for i in range(1, k-n+2) : # 시작 위치. 길이가 n일때 1,2,...n 부터 시작해서 k-(n+1),...k-1,k까지 돈다. 
+        for i in range(1, k-n+2) : # 시작 위치. 길이가 n일때 1,2,...n 부터 시작해서 k-(n-1),...k-1,k까지 돈다. 
             #예를 들어 길이가 2면 k-1까지 돌아야한다.
             
             dp[i][i+n-1] = min(dp[i][j] + dp[j+1][i+n-1] for j in range(i, i+n-1)) + (s[i+n-1] - s[i-1])
