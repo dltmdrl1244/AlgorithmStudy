@@ -1,35 +1,17 @@
 import sys
-from math import inf
 input = sys.stdin.readline
 
-n, v = map(int, input().split())
-graph = [[inf] * n for _ in range(n)]
+N = int(input())
+sche = []
+dp = [0] * (N+1)
 
-for i in range(v) :
-    v1, v2 = map(int, input().split())
-    graph[v1-1][v2-1] = 1
-    graph[v2-1][v1-1] = 1
-    
-for i in range(n) :
-    graph[i][i] = 0
+for _ in range(N) :
+    sche.append(list(map(int, input().split())))
 
-for k in range(n) :
-    for i in range(n) :
-        for j in range(n) :
-            if i == j :
-                continue
-            if graph[i][k] and graph[k][j] :
-                if graph[i][j] :
-                    graph[i][j] = min(graph[i][j], graph[i][k] + graph[k][j])
-                else :
-                    graph[i][j] = graph[i][k] + graph[k][j]
-    
-idx = 0
-mval = inf
-for i in range(n-1, -1, -1) :
-    # print(i, sum(graph[i]))
-    if mval >= sum(graph[i]) :
-        mval = sum(graph[i])
-        idx = i
-            
-print(idx+1)
+for i in range (N-1, -1, -1) :
+    if i + sche[i][0] > N :
+        dp[i] = dp[i+1]
+    else :
+        dp[i] = max(dp[i+1], sche[i][1] + dp[i + sche[i][0]])
+        
+print(dp[0])
