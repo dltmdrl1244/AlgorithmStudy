@@ -17,16 +17,7 @@ for i in range(n):
         if s[i][j] == 9:
             curPos = [i, j]
             s[i][j] = 0
-
-
-def find_food():
-    for i in range(n):
-        for j in range(n):
-            if 0 < s[i][j] < shark:
-                return True
-    return False
-
-
+            
 def bfs(initPos):
     global shark, s, curPos, sharkExp
     visited = [[False] * n for _ in range(n)]
