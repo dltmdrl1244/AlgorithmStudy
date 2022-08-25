@@ -16,16 +16,15 @@ def bfs(start):
 
     while q:
         curv, cnt = q.popleft()
-        if visited[curv]:
-            continue
         if cnt == k:
             result.append(curv)
             
         visited[curv] = True
         
         for e in edge[curv]:
-             q.append([e, cnt+1])
-            
+            if not visited[e]:
+                q.append([e, cnt+1])
+                visited[e] = True
        
     result.sort()
     return result
