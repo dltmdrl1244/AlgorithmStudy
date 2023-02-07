@@ -1,3 +1,0 @@
-설명글
-
-https://velog.io/@dltmdrl1244/BOJ-%EB%B0%B1%EC%A4%80-11066-%ED%8C%8C%EC%9D%BC-%ED%95%A9%EC%B9%98%EA%B8%B0-%ED%8C%8C%EC%9D%B4%EC%8D%AC
