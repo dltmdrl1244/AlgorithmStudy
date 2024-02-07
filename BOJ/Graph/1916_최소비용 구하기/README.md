@@ -1,5 +1,5 @@
 # 문제
-링크 : [클릭](https://www.acmicpc.net/problem/1916)
+링크 : [1916 최소비용 구하기](https://www.acmicpc.net/problem/1916)
 
 해결여부 : Y
 
